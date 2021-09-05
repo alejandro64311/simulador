@@ -1,0 +1,30 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div class="card"  >
+            <div class="card-header">
+                <h5 class="card-title">Simulador de la maquina de Turing</h5>
+
+            </div>
+            <div class="card-body">
+                <form [formGroup]="form">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Cinta</label>
+                      <input formControlName="cinta" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Valores iniciales de la cinta">
+                    </div>
+                    <div class="form-group mt-3 ">
+                        <label for="exampleFormControlTextarea1">Quintuplas</label>
+                        <textarea formControlName="quintuplas" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                      </div>
+                      <div class="form-group mt-3 ">
+                        <label for="exampleFormControlTextarea1">Resultado</label>
+                        <textarea formControlName="result" class="form-control" id="exampleFormControlTextarea1" rows="5"></textarea>
+                      </div>
+                  </form>
+            </div>
+            <div class="card-footer">
+                <button class="btn btn-primary mx-2" (click)="execute()">Ejecutar</button>
+                <button class="btn btn-primary">Limpiar</button>
+            </div>
+        </div>
+    </div>
+</div>
