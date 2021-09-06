@@ -46,14 +46,14 @@ export class SimulacionComponent implements OnInit {
       this.executInitialSteep();
       while (finished<MAX_ITERATIONS) {
         this.executSteep();
-        // this.goToNextState();
-  
         finished ++;
       }
+      this.finalText +=`\nMáximo de iteraciones alcanzado (${MAX_ITERATIONS})`;
+      this.form.controls["result"].setValue(this.finalText);
     } catch (ex) {
-      let value = this.chartListCinta.toString();
-      this.form.controls["result"].setValue(value);
-      console.log("terminado");
+      this.finalText +="\nTerminado";
+      this.form.controls["result"].setValue(this.finalText);
+ 
       
     }
  
