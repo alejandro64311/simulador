@@ -43,7 +43,7 @@ export class SimulacionComponent implements OnInit {
   executeIterations() {
     var finished = 0;
     try {
-      this.executInitialSteep();
+      this. executInitialSteep();
       while (finished<MAX_ITERATIONS) {
         this.executSteep();
         finished ++;
@@ -98,7 +98,10 @@ export class SimulacionComponent implements OnInit {
     let index = this.cinta.indexOf("*");
     this.indexCinta = (index == -1) ? 0 : index;
 
-    
+    if(this.cinta.length-1==index)
+    this.cinta+=" ";
+
+
   }
 
   buildCintaVariables() {
@@ -135,10 +138,11 @@ export class SimulacionComponent implements OnInit {
 
   getIterationText(){
     var text = "\n"+this.chartListCinta.toString();
-    var text = text.replace(/_/g,"").replace(/,/g,"");
+    // var text = text.replace(/_/g,"").replace(/,/g,"");
     return  text;
   }
   executSteep() {
+    this.buildLengthCinta();
     let char = this.chartListCinta[this.indexCinta]==undefined ? "_" : this.chartListCinta[this.indexCinta];
     let indexTupla = this.arrayQuintuplas.findIndex(x => x[INDEX_VALUE_1] == char && x[INDEX_STATE]==this.actualState);
     let tupla = this.arrayQuintuplas[indexTupla];
@@ -155,8 +159,13 @@ export class SimulacionComponent implements OnInit {
     this.finalText += this.getIterationText();
     this.form.controls["result"].setValue(this.finalText);
   }
-  goToNextState() {
-  
+  buildLengthCinta() {
+    if(this.indexCinta>=this.chartListCinta.length){
+      this.chartListCinta.push("_")
+    }else if(this.indexCinta==-1){
+      this.chartListCinta.unshift("_");
+      this.indexCinta = 0;
+    }
     
   }
   addChartToCinta(newChar,tupla)
